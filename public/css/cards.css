@@ -1,0 +1,136 @@
+.main{
+	width: 	350px;
+	background-color: white;
+	margin: auto;
+	position: relative;
+	top: 5vh;
+}
+body{
+	
+}
+.media-object{
+	width: 3.5vw;
+	height: 3.5vw;
+}
+.media{
+	padding: 0.5vw;
+}
+.media-body{
+	padding-left: 1vw;
+	font-size: 1.2vw;
+	position: relative;
+	top: 0.5vw;
+}
+.fa-ellipsis-h{
+	position: relative;
+	bottom: 2vw;
+	font-size: 1.5vw;
+	margin-right: 1vw;
+}
+.panel-body{
+	padding: 1vw;
+}
+.vid{
+	height: inherit;
+	width: 100%;
+}
+.not{
+	height: 5vw;
+}
+.iconsec{
+	padding-top: 1vw;
+	padding-left: 0.5vw;
+	font-size: 1.2vw;
+}
+.caption{
+	padding-left: 0.5vw;
+}
+.read{
+	padding-left: 0.5vw;
+	cursor: pointer;
+	color: grey;
+}
+.time{
+	font-size: 0.8vw;
+}
+.fa{
+	cursor : pointer
+}
+#open{
+	width: 100%;
+	background-color: #d32f2f;
+}
+#open:hover{
+	background-color: white;
+	color: #d32f2f;
+}
+.menu{
+	width: 100%;
+	background: inherit;
+	height: 3vw;
+	display: none;
+}
+.menu a{
+	margin-left: 2vw;
+	margin-right: 2vw;
+	font-size: 2vw;
+	color: #d32f2f;
+}
+@media only screen and (max-width: 425px){
+	.main{
+		width: 90vw;
+	}
+	.media-object{
+	    width: 10.5vw;
+	    height: 10.5vw;
+    }
+	.media{
+	    padding: 1.5vw;
+    }
+	.media-body{
+	    padding-left: 3vw;
+	    font-size: 5.6vw;
+	    position: relative;
+	    top: 1.5vw;
+    }
+	.fa-ellipsis-h{
+	    position: relative;
+	    bottom: 10vw;
+	    font-size: 5.5vw;
+	    margin-right: 3vw;
+    }
+	.panel-body{
+	    padding: 3vw;
+	}
+	.vid{
+		height: inherit;
+		width: 100%;
+	}
+	.not{
+		height: 5vw;
+    }
+	.iconsec{
+	    padding-top: 3vw;
+	    padding-left: 1.5vw;
+	    font-size: 5.6vw;
+    }
+	.caption{
+	    padding-left: 1.5vw;
+    }
+	.read{
+	    padding-left: 1.5vw;
+	
+    }
+	.time{
+	    font-size: 3.5vw;
+    }
+	.menu{
+		height: 9vw;
+	}
+	.menu a{
+	    margin-left: 6vw;
+	    margin-right: 6vw;
+	    font-size: 6vw;
+	    color: #d32f2f;
+    }
+}
