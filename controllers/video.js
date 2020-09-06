@@ -2,7 +2,7 @@ const cloudinary = require('cloudinary').v2;
 const validator = require('validator');
 const Video = require('../models/Video');
 const url = require('url');
-const { notification } = require('paypal-rest-sdk');
+const fs = require('fs');
 
 function fullUrl(req, pathname) {
   return url.format({
@@ -79,6 +79,11 @@ exports.postUpload = (req, res, next) => {
       } else {
         console.log(error);
       }
+
+      fs.unlink(file.path, (err) => {
+        if (err) { return next(err); }
+        console.log('Temp video deleted.');
+      });
 
       return next(error);
     });

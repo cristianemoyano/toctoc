@@ -7,13 +7,13 @@ const videoSchema = new mongoose.Schema({
   width: Number,
   height: Number,
   format: String,
-
   resource_type: String,
   created_at: String,
   bytes: Number,
   type: String,
   url: String,
   secure_url: String,
+  video_title: String,
   user_email: String,
 
 }, { timestamps: true });
