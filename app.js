@@ -76,8 +76,15 @@ app.use(sass({
   dest: path.join(__dirname, 'public')
 }));
 app.use(logger('dev'));
+// parse application/json
 app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text({ type: 'text/html' }));
+app.use(bodyParser.text({ type: 'text/xml' }));
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
+app.use(bodyParser.json({ type: 'application/*+json' }));
+
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -91,9 +98,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+// Multer multipart/form-data handling needs to occur before the Lusca CSRF check.
+const multipartApis = ['/api/upload', '/upload'];
+
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
-    // Multer multipart/form-data handling needs to occur before the Lusca CSRF check.
+  if (multipartApis.indexOf(req.path) >= 0) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -130,10 +140,9 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
 /**
  * Primary app routes.
  */
+// Home route
 app.get('/', homeController.index);
-
-app.get('/upload', passportConfig.isAuthenticated, videoController.index);
-
+// Login routes
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
@@ -143,8 +152,10 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
+// Internal routes
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
+// Account routes
 app.get('/account/verify', passportConfig.isAuthenticated, userController.getVerifyEmail);
 app.get('/account/verify/:token', passportConfig.isAuthenticated, userController.getVerifyEmailToken);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
@@ -152,6 +163,11 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+// Video routes
+app.get('/upload', passportConfig.isAuthenticated, videoController.getUpload);
+app.post('/upload', upload.single('source'), videoController.postUpload);
+app.post('/webhook/video/uploaded', videoController.uploaded);
+
 
 /**
  * API examples routes.

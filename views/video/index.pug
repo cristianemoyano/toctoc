@@ -1,22 +1,19 @@
 extends ../layout
 
 block content
+    .pb-2.mt-2.mb-4.border-bottom
+        h2 Upload your video
+        h4 This video will be uploaded.
 
-    h2 Upload video
-    h4 This video will be uploaded.
+    form(method='POST' enctype='multipart/form-data')
+        input(type='hidden', name='_csrf', value=_csrf)
 
-    form(action="/" method="POST" enctype="multipart/form-data").form
         .form-group
-            label(for='videoTitle') Video Title
-            input#videoTitle.form-control(type='text', name='title', placeholder="Here your video title.." required).input
+            label(class='col-md-2 col-form-label font-weight-bold', for='title') Video Title
+            input.form-control(type='text', name='title', id='title', autocomplete='title', placeholder='Here your video title..', autofocus, required)
         
         .form-group
-            label(for='email') Email
-            input#email.form-control(type='email', name='email', placeholder="Here your email..").input
-
-        .form-group
-            input(type='file', name='source' required).input
-            input(type='hidden' name='metadata' value='{"videoUpload":"true"}')
+            label(class='col-md-2 col-form-label font-weight-bold', for='source') Select your video
+            input.form-control(type='file', name='source', id='source', required)
         
-        button.btn.btn-primary(type='submit') Submit
-
+        button.btn.btn-primary(type='submit') Upload
