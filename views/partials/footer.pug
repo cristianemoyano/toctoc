@@ -1,10 +1,16 @@
-footer
-  .container.text-center
-    p.float-left 
+
+.position-fixed
+  ul.nav.nav-pills.flex-column.text-center
+    li.nav-item
+      a.nav-link.active(href='/')
+        i.fas.fa-burn
+        | Feed
+
+  hr
+  .container
+    p.float-left
       | © 2020 
       i.fas.fa-burn
-      | Tok Tok. All Rights Reserved
-    ul.float-right.list-inline
-      li.list-inline-item
-        //- a(href='https://github.com/cristianemoyano/toctoc') GitHub Project
-
+      | Tok Tok.
+    p.float-left
+      //- a(href='https://github.com/cristianemoyano/toctoc') GitHub Project
