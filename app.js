@@ -30,6 +30,7 @@ dotenv.config({ path: '.env' });
  * Controllers (route handlers).
  */
 const homeController = require('./controllers/home');
+const videoController = require('./controllers/video');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
@@ -130,6 +131,9 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
  * Primary app routes.
  */
 app.get('/', homeController.index);
+
+app.get('/upload', passportConfig.isAuthenticated, videoController.index);
+
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+
+    h2 Upload video
+    h4 This video will be uploaded.
+
+    form(action="/" method="POST" enctype="multipart/form-data").form
+        .form-group
+            label(for='videoTitle') Video Title
+            input#videoTitle.form-control(type='text', name='title', placeholder="Here your video title.." required).input
+        
+        .form-group
+            label(for='email') Email
+            input#email.form-control(type='email', name='email', placeholder="Here your email..").input
+
+        .form-group
+            input(type='file', name='source' required).input
+            input(type='hidden' name='metadata' value='{"videoUpload":"true"}')
+        
+        button.btn.btn-primary(type='submit') Submit
+
