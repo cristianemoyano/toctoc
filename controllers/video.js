@@ -69,6 +69,7 @@ exports.postUpload = (req, res, next) => {
           type: result.type,
           url: result.url,
           secure_url: result.secure_url,
+          video_title: title,
           user_email: req.user.email
         });
 
